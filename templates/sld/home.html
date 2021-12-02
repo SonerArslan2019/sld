@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>HOME</h1>
+        </div>
+        <div class="col">
+            <a href="{% url 'ana_sayfa' %}" class="btn btn-primary" role="button" data-bs-toggle="button"><h3>Ana SAYFA</h3></a>
+        </div>
+        <hr><br>
+        <div class="col">
+            <a href="{% url 'sld:detail' %}" class="btn btn-primary" role="button" data-bs-toggle="button"><h3>GORUNTULE</h3></a>
+            <a href="{% url 'sld:create' %}" class="btn btn-primary" role="button" data-bs-toggle="button"><h3>OLUSTUR</h3></a>
+            <a href="{% url 'sld:list' %}" class="btn btn-primary" role="button" data-bs-toggle="button"><h3>LISTE</h3></a>
+            <a href="{% url 'sld:make_pdf' %}" class="btn btn-primary" role="button" data-bs-toggle="button"><h3>PDF</h3></a>
+            <a href="{% url 'sld:send_mail' %}" class="btn btn-primary" role="button" data-bs-toggle="button"><h3>GONDER</h3></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
