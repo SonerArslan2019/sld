@@ -15,6 +15,27 @@
         <div class="col">
             <a href="{% url 'ana_sayfa' %}" class="btn btn-primary" role="button" data-bs-toggle="button"><h3>Ana
                 SAYFA</h3></a>
+            {{ is_emri.user }}
+            {{ is_emri.crm }}
+            {{ is_emri.firma_bilgileri }}
+            {{ is_emri.sevk_adresi }}
+            {{ is_emri.olusturma_tarihi }}
+            {{ is_emri.teslim_tarihi }}
+            {{ is_emri.teslim_sekli }}
+            {{ is_emri.cam }}
+            {{ is_emri.bitis }}
+            {{ is_emri.notlar }}
+            {{ is_emri.hazirlayan }}
+            {{ is_emri.imalat_sorumlusu }}
+            {{ is_emri.acilis_yonu }}
+            {{ is_emri.ustluk }}
+            {{ is_emri.kapi_tipi }}
+            {{ is_emri.gecis_genisligi }}
+            {{ is_emri.gecis_yuksekligi }}
+            {{ is_emri.mekanizma_genisligi }}
+            {{ is_emri.opsiyonlar }}
+            {{ is_emri.radar_aktivasyonlar }}
+
         </div>
         <div class="col">
             <a href="{% url 'sld:home' %}" class="btn btn-primary" role="button" data-bs-toggle="button"><h3>SLD -
