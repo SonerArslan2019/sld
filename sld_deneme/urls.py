@@ -4,6 +4,6 @@ from sld import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.ana_sayfa, name='ana_sayfa'),
+    path('', views.giris_sayfasi, name='giris_sayfasi'),
     path('sld/', include("sld.urls", namespace='sld'))
 ]
