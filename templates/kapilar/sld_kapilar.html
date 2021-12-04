@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>SLD KAPILAR / İşlem Türleri</h3>
+<hr>
+<div>
+    <div>
+        <h7>YENI IMALAT OLUSTUR ===> :</h7>
+        <a href="{% url 'sld:isEmri_olustur' %}" type="submit">Imalat Olustur</a>
+    </div>
+    <div>
+        <h7>ESKI IMALATLAR ===> :</h7>
+        <a href="{% url 'sld:isEmri_listele' %}">Kayitli Imalatlar</a>
+    </div>
+</div>
+</body>
+</html>

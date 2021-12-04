@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genel Kapilar</title>
+</head>
+<body>
+<h1>genel kapilar</h1>
+<hr>
+<div>
+    {% if request.user.is_authenticated %}
+        <div>
+            <br>
+            <h3>Kapı Tipleri</h3>
+            <hr>
+        </div>
+        <div>
+            <a href="{% url 'home:sld_kapilar' %}"><h4>SLD Kapilar</h4></a>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>

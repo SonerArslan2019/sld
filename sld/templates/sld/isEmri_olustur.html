@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OLUSTUR</title>
+</head>
+<body>
+<div>
+    <div>
+        <h2>SLD Kayar Kapi - İŞ EMRİ OLUSTUR</h2>
+    </div>
+    <hr>
+    <div>
+        <form method="POST" action="{% url 'sld:isEmri_olustur' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <div>
+                <input type="submit" value="Is Emri Olustur"></input>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

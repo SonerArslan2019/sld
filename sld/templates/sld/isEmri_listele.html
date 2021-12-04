@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LISTE</title>
+</head>
+<body>
+<div>
+    <a href="{% url 'home:sld_kapilar' %}"><strong>SLD ISLEM TURLERI</strong></a>. | .
+    <a href="{% url 'sld:isEmri_olustur' %}"><strong>SLD YENI OLUSTUR</strong></a><hr>
+    <div><h4>SLD Uretim is Emirleri</h4></div><br>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>CRM NO</th>
+                <th>Firma</th>
+                <th>Teslim Tarihi</th>
+                <th>Kayıt Zamanı</th>
+                <th>Kapı Türü</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for is_emri in list %}
+                <tr>
+                    <th>{{ is_emri.crm }}</th>
+                    <td>{{ is_emri.firma_bilgileri }}</td>
+                    <td>{{ is_emri.teslim_tarihi }}</td>
+                    <td>{{ is_emri.olusturma_tarihi|timesince }} önce</td>
+                    <td>{{ is_emri.kapi_tipi|title }}</td>
+                    <td>
+                        <a href="{% url 'sld:isEmri_goruntule' id=is_emri.id %}">
+                            <div>Görüntüle</div>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

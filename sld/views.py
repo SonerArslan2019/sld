@@ -1,15 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.views import login_required
 from django.contrib.messages import success, error
 from .models import SldModel
 from .forms import SldForm
 
 
+@login_required
 def isEmri_goruntule(request, id):
     is_emri = get_object_or_404(SldModel, id=id)
 
     return render(request, 'sld/isEmri_goruntule.html', context={'is_emri': is_emri})
 
 
+@login_required
 def isEmri_olustur(request):
     if request.method == 'POST':
         form = SldForm(request.POST)
@@ -28,21 +31,16 @@ def isEmri_olustur(request):
     return render(request, 'sld/isEmri_olustur.html', context)
 
 
+@login_required
 def isEmri_listele(request):
     return render(request, 'sld/isEmri_listele.html', {'list': SldModel.objects.all()})
 
 
+@login_required
 def pdf_olustur(request):
     return render(request, 'sld/pdf_olustur.html')
 
 
+@login_required
 def mail_gonder(request):
     return render(request, 'sld/mail_gonder.html')
-
-
-def sld_home(request):
-    return render(request, 'sld/sld_home.html')
-
-
-def giris_sayfasi(request):
-    return render(request, 'sld/giris_sayfasi.html')

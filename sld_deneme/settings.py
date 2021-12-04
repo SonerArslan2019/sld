@@ -23,6 +23,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My apps.
     'sld',
+    'user',
+    'home',
     # Default Django apps.
     'django.contrib.admin',
     'django.contrib.auth',
