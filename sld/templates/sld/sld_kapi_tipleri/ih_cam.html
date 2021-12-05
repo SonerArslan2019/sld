@@ -1,0 +1,156 @@
+{% load extra_tags %}
+{% load ih_cam %}
+
+{% with kanat_genisligi=is_emri.gecis_genisligi|kanat_genisligi_hesaplama %}
+    <div>
+        <table>
+            <tr>
+                <td>ID</td>
+                <td>{{ is_emri.id }}</td>
+            </tr>
+            <tr>
+                <td>CRM</td>
+                <td>{{ is_emri.crm }}</td>
+            </tr>
+            <tr>
+                <td>Firma</td>
+                <td>{{ is_emri.firma_bilgileri }}</td>
+            </tr>
+            <tr>
+                <td>Geçiş Genişliği</td>
+                <td>{{ kanat_genisligi|add:-84 }}</td>
+            </tr>
+            <tr>
+                <td>Geçiş Yüksekliği</td>
+                <td>{{ is_emri.gecis_yuksekligi }}</td>
+            </tr>
+            <tr>
+                <td>Kanat Gemişliği</td>
+                <td>{{ kanat_genisligi }}</td>
+            </tr>
+            <tr>
+                <td>Toplam Yükseklik</td>
+                <td>{{ is_emri.gecis_yuksekligi|add:110 }}</td>
+            </tr>
+            <tr>
+                <td>Cam Türü</td>
+                <td>{{ is_emri.cam }}</td>
+            </tr>
+            <tr>
+                <td>Renk</td>
+                <td>{{ is_emri.bitis }}</td>
+            </tr>
+            <tr>
+                <td>Teslim Tarihi</td>
+                <td>{{ is_emri.teslim_tarihi|date:'d.m.Y' }}</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Parça</th>
+                <th>Ölçü (mm)</th>
+                <th>Adet</th>
+                <th>Toplam Ölçü (mm)</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <th>RAY VE KAPAK UZUNLUĞU</th>
+                <td>{{ is_emri.gecis_genisligi|mul:2|add:100 }}</td>
+                <td>1</td>
+                <td>{{ is_emri.gecis_genisligi|mul:2|add:100 }}</td>
+            </tr>
+            <tr>
+                <th>ETEK KESİM ÖLÇÜSÜ</th>
+                <td>{{ kanat_genisligi|add:-48 }}</td>
+                <td>4</td>
+                <td> {{ kanat_genisligi|add:-48|mul:4 }} </td>
+            </tr>
+            <tr>
+                <th>DİKME</th>
+                <td>{{ is_emri.gecis_yuksekligi }}</td>
+                <td>4</td>
+                <td>{{ is_emri.gecis_yuksekligi|mul:4 }}</td>
+            </tr>
+            <tr>
+                <th>KENET</th>
+                <td>{{ is_emri.gecis_yuksekligi }}</td>
+                <td>2</td>
+                <td>{{ is_emri.gecis_yuksekligi|mul:2 }}</td>
+            </tr>
+            <tr>
+                <th>YARIM KENET</th>
+                <td>{{ is_emri.gecis_yuksekligi }}</td>
+                <td>2</td>
+                <td>{{ is_emri.gecis_yuksekligi|mul:2 }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Parça</th>
+                <th>Ölçü (mm)</th>
+                <th>Adet</th>
+                <th>Toplam Ölçü (mm)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>YARIM ARA KENET</th>
+                <td>{{ is_emri.gecis_genisligi|add:10 }}</td>
+                <td>1</td>
+                <td>{{ is_emri.gecis_genisligi|add:10 }}</td>
+            </tr>
+            <tr>
+                <th>TEK CAM ÇITASI YATAY</th>
+                <td>{{ kanat_genisligi|add:-54 }}</td>
+                <td>4</td>
+                <td>{{ kanat_genisligi|add:-54|mul:4 }}</td>
+            </tr>
+            <tr>
+                <th>TEK CAM ÇITASI DİKEY</th>
+                <td>{{ is_emri.gecis_yuksekligi|add:-140 }}</td>
+                <td>4</td>
+                <td>{{ is_emri.gecis_yuksekligi|add:-140|mul:4 }}</td>
+            </tr>
+            <tr>
+                <th>FIRÇA PLASTİK ADAPTÖRÜ</th>
+                <td>{{ kanat_genisligi|add:-30 }}</td>
+                <td>2</td>
+                <td>{{ kanat_genisligi|add:-30|mul:2 }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Tipi</th>
+                <th>En</th>
+                <th>Boy</th>
+                <th>Adet</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>HAREKETLİ CAM ÖLÇÜSÜ</td>
+                <td>{{ kanat_genisligi|add:-64 }}</td>
+                <td>{{ is_emri.gecis_yuksekligi|add:-120 }}</td>
+                <td>2</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr>
+{% endwith %}
