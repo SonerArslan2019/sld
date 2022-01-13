@@ -11,12 +11,12 @@
     </div>
     <hr>
     <div>
-        <form method="POST" action="{% url 'sld:isEmri_olustur' %}">
+        <form action="{% url 'sld:isEmri_olustur' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             <br>
             <div>
-                <input type="submit" value="Is Emri Olustur"></input>
+                <input type="submit" value="Is Emri Olustur">
             </div>
         </form>
     </div>
