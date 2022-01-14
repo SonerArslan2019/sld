@@ -11,7 +11,7 @@
     </div>
     <hr>
     <div>
-        <form action="{% url 'sld:isEmri_olustur' %}" method="POST">
+        <form action="{% url 'sld:isEmri_olustur' %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <br>

@@ -18,17 +18,16 @@ def isEmri_olustur(request):
         form = SldForm(request.POST)
 
         if form.is_valid():
-            instance = form.save(commit=False)
-            instance.user = request.user
-            instance.save()
-            success(request, f'{instance.crm} başarıyla oluşturuldu.')
+            form_ornek = form.save(commit=False)
+            form_ornek.user = request.user
+            form_ornek.save()
+            success(request, f'{form_ornek.crm} başarıyla oluşturuldu.')
             return redirect('sld:isEmri_listele')
         else:
             error(request, 'Lütfen formu eksiksiz doldurduğunuza emin olun!')
     elif request.method == 'GET':
         form = SldForm()
-    context = {'form': form}
-    return render(request, 'sld/isEmri_olustur.html', context)
+    return render(request, 'sld/isEmri_olustur.html', {'form': form})
 
 
 @login_required
