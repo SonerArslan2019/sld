@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>OLUSTUR</title>
-</head>
-<body>
-<div>
-    <div>
-        <h2>SLD Kayar Kapi - İŞ EMRİ OLUSTUR</h2>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="container">
+        <div>
+            <h2>SLD Kayar Kapi - İŞ EMRİ OLUSTUR</h2>
+        </div>
+        <hr>
+        <div>
+            <form action="{% url 'sld:isEmri_olustur' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <div>
+                    <input type="submit" value="Is Emri Olustur">
+                </div>
+            </form>
+        </div>
     </div>
-    <hr>
-    <div>
-        <form action="{% url 'sld:isEmri_olustur' %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <br>
-            <div>
-                <input type="submit" value="Is Emri Olustur">
-            </div>
-        </form>
-    </div>
-</div>
-</body>
-</html>
+{% endblock body %}
