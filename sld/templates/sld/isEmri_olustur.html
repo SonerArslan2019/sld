@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
 {% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
+
+
 
 {% block body %}
     <div class="container">
@@ -8,9 +16,29 @@
         </div>
         <hr>
         <div>
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ field.label }} | {{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
             <form action="{% url 'sld:isEmri_olustur' %}" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
+                {#                {{ form | crispy }}#}
+                {#                {% load bootstrap4 %}#}
+                {#                {% bootstrap_css %}#}
+                {#                {% bootstrap_javascript jquery='full' %}#}
+                {#                {{ form.media }}#}
                 <br>
                 <div>
                     <input type="submit" value="Is Emri Olustur">
@@ -19,3 +47,12 @@
         </div>
     </div>
 {% endblock body %}
+
+{% block extra_script %}
+    <script src="{% static 'js/form.js' %}"></script>
+
+
+
+
+{% endblock %}
+
