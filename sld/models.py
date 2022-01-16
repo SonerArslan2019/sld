@@ -46,28 +46,28 @@ class SldModel(models.Model):
         ('Sandikli Paketleme', 'Sandikli Paketleme'),
         ('Standart Paketleme', 'Standart Paketleme'),
     )
-    SON_BITISLER = (
-        ('Ral Boya', 'Ral Boya'),
-        ('Mat Eloksal', 'Mat Eloksal'),
-        ('Renkli Mat Eloksal', 'Renkli Mat Eloksal'),
-        ('304 Kalite Mat Paslanmaz', '304 Kalite Mat Paslanmaz'),
-        ('304 Kalite Ayna Paslanmaz', '304 Kalite Ayna Paslanmaz'),
-        ('304 Kalite Satine Paslanmaz', '304 Kalite Satine Paslanmaz'),
-        ('316 Kalite Mat Paslanmaz', '316 Kalite Mat Paslanmaz'),
-        ('316 Kalite Ayna Paslanmaz', '316 Kalite Ayna Paslanmaz'),
-        ('316 Kalite Satine Paslanmaz', '316 Kalite Satine Paslanmaz'),
-    )
-    CAM_TIPLERI_STANDART = (
-        ('4+4 Seffaf Lamine', '4+4 Seffaf Lamine'),
-        ('5+5 Seffaf Lamine', '5+5 Seffaf Lamine'),
-        ('6+6 Seffaf Lamine', '6+6 Seffaf Lamine'),
-        ('4+4 Opak Lamine', '4+4 Opak Lamine'),
-        ('5+5 Opak Lamine', '5+5 Opak Lamine'),
-        ('6+6 Opak Lamine', '6+6 Opak Lamine'),
-        ('8 mm Temperli', '8 mm Temperli'),
-        ('10 mm Temperli', '10 mm Temperli'),
-        ('12 mm Temperli', '12 mm Temperli'),
-    )
+    # SON_BITISLER = (
+    #     ('Ral Boya', 'Ral Boya'),
+    #     ('Mat Eloksal', 'Mat Eloksal'),
+    #     ('Renkli Mat Eloksal', 'Renkli Mat Eloksal'),
+    #     ('304 Kalite Mat Paslanmaz', '304 Kalite Mat Paslanmaz'),
+    #     ('304 Kalite Ayna Paslanmaz', '304 Kalite Ayna Paslanmaz'),
+    #     ('304 Kalite Satine Paslanmaz', '304 Kalite Satine Paslanmaz'),
+    #     ('316 Kalite Mat Paslanmaz', '316 Kalite Mat Paslanmaz'),
+    #     ('316 Kalite Ayna Paslanmaz', '316 Kalite Ayna Paslanmaz'),
+    #     ('316 Kalite Satine Paslanmaz', '316 Kalite Satine Paslanmaz'),
+    # )
+    # CAM_TIPLERI_STANDART = (
+    #     ('4+4 Seffaf Lamine', '4+4 Seffaf Lamine'),
+    #     ('5+5 Seffaf Lamine', '5+5 Seffaf Lamine'),
+    #     ('6+6 Seffaf Lamine', '6+6 Seffaf Lamine'),
+    #     ('4+4 Opak Lamine', '4+4 Opak Lamine'),
+    #     ('5+5 Opak Lamine', '5+5 Opak Lamine'),
+    #     ('6+6 Opak Lamine', '6+6 Opak Lamine'),
+    #     ('8 mm Temperli', '8 mm Temperli'),
+    #     ('10 mm Temperli', '10 mm Temperli'),
+    #     ('12 mm Temperli', '12 mm Temperli'),
+    # )
 
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     crm = models.CharField('CRM No', max_length=10, blank=False, null=False)
@@ -77,8 +77,8 @@ class SldModel(models.Model):
     teslim_tarihi = models.DateField('Teslim Tarihi')
     teslim_sekli = models.CharField('Teslim Sekli', choices=TESLIM_SEKLI, max_length=35)
     paketleme_sekli = models.CharField('Paketleme Sekilleri', choices=PAKETLEME_SEKLI, max_length=50)
-    cam = models.CharField('Cam', choices=CAM_TIPLERI_STANDART, max_length=25, blank=True)
-    bitis = models.CharField('Renk', choices=SON_BITISLER, max_length=27, blank=True)
+    cam = models.CharField('Cam',  max_length=25)
+    bitis = models.CharField('Renk', max_length=27)
     notlar = models.TextField('Notlar', blank=True, null=True)
     hazirlayan = models.CharField('Hazırlayan', max_length=200)
     imalat_sorumlusu = models.CharField('Imalat Sorumlusu', blank=True, null=True, max_length=40)

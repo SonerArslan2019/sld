@@ -1,0 +1,26 @@
+{% load static %}
+
+<div class="row">
+    <div style="text-align: center;" class="col-md-10">
+        <div class="table-responsive-md">
+            <table style="text-align: center;" class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Hazırlayan</th>
+                    <th>İmalat Sorumlusu</th>
+                    <th>Firma</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="text-align: left">{{ is_emri.hazirlayan }}</td>
+                    <td style="text-align: left">{{ is_emri.imalat_sorumlusu }}</td>
+                    <td style="text-align: right"><img class="" src="{% static 'img/metaxdoor_logo.png' %}"
+                                                       alt=""></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

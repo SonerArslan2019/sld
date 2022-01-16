@@ -151,3 +151,686 @@
     </div>
     <hr>
 {% endwith %}
+
+
+{#{% load static %}#}
+{#{% load extra_tags %}#}
+{#{% load ih_standart %}#}
+{##}
+{#{% with kanat_genisligi=work_order.pass_width|kanat_genisligi_hesaplama %}#}
+{#    {% include 'sld/parts/tab_menu.html' %}#}
+{##}
+{#    <div class="tab-content" id="nav-tabContent">#}
+{#        <div class="tab-pane fade show active p-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">#}
+{#            <div class="container">#}
+{#                <div class="row">#}
+{#                    <div class="col-md-6">#}
+{#                        <table class="table table-sm table-striped table-bordered caption-top">#}
+{#                            <caption>Genel bilgiler</caption>#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th>CRM</th>#}
+{#                                <th>{{ work_order.crm }}</th>#}
+{#                                <th>Firma</th>#}
+{#                                <th>{{ work_order.company_name }}</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            <tr>#}
+{#                                <td>Geçiş Genişliği</td>#}
+{#                                <td>{{ work_order.pass_width }}</td>#}
+{#                                <td>Geçiş Yüksekliği</td>#}
+{#                                <td>{{ work_order.pass_height }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <td>Kanat Gemişliği</td>#}
+{#                                <td>{{ kanat_genisligi }}</td>#}
+{#                                <td>Toplam Yükseklik</td>#}
+{#                                <td>{{ work_order.pass_height|add:110 }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <td>Cam Türü</td>#}
+{#                                <td>{{ work_order.glass }}</td>#}
+{#                                <td>Renk</td>#}
+{#                                <td>{{ work_order.color }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <td>Teslim Tarihi</td>#}
+{#                                <td>{{ work_order.delivery_date|date:'d.m.Y' }}</td>#}
+{#                                <td>Sevk Adresi</td>#}
+{#                                <td>{{ work_order.delivery_address }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <td>Teslim Şekli</td>#}
+{#                                <td colspan="3">{{ work_order.delivery_type }}</td>#}
+{#                            </tr>#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                    <div class="col-md-6 text-on-image d-flex align-items-center justify-content-center">#}
+{#                        <div class="d-flex align-items-center justify-content-center position-relative">#}
+{#                            <div class="text" style="left: 47%;bottom: 13%">{{ work_order.pass_width }}</div>#}
+{#                            <div class="text"#}
+{#                                 style="left: 26%; top: 50%; transform: rotate(-90deg) ">{{ work_order.pass_height }}</div>#}
+{#                            <div class="text" style="left: 40%; bottom: 21%">{{ kanat_genisligi|add:-84 }}</div>#}
+{#                            <div class="text" style="left: 60%; bottom: 21%">{{ kanat_genisligi|add:-84 }}</div>#}
+{#                            <img src="{% static 'img/sld/ih_standart.png' %}">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                        <table class="table table-bordered">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th scope="col">Parça</th>#}
+{#                                <th scope="col">Ölçü (mm)</th>#}
+{#                                <th scope="col">Adet</th>#}
+{#                                <th scope="col">Toplam Ölçü (mm)</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{##}
+{#                            <tr>#}
+{#                                <th scope="row">RAY VE KAPAK UZUNLUĞU</th>#}
+{#                                <td>{{ work_order.pass_width|mul:2|add:100 }}</td>#}
+{#                                <td>1</td>#}
+{#                                <td>{{ work_order.pass_width|mul:2|add:100 }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="row">ETEK KESİM ÖLÇÜSÜ</th>#}
+{#                                <td>{{ kanat_genisligi|add:-48 }}</td>#}
+{#                                <td>4</td>#}
+{#                                <td> {{ kanat_genisligi|add:-48|mul:4 }} </td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="row">DİKME</th>#}
+{#                                <td>{{ work_order.pass_height }}</td>#}
+{#                                <td>4</td>#}
+{#                                <td>{{ work_order.pass_height|mul:4 }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="row">KENET</th>#}
+{#                                <td>{{ work_order.pass_height }}</td>#}
+{#                                <td>2</td>#}
+{#                                <td>{{ work_order.pass_height|mul:2 }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="row">YARIM KENET</th>#}
+{#                                <td>{{ work_order.pass_height }}</td>#}
+{#                                <td>2</td>#}
+{#                                <td>{{ work_order.pass_height|mul:2 }}</td>#}
+{#                            </tr>#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                    <div class="col-md-6">#}
+{#                        <table class="table table-bordered">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th scope="col">Parça</th>#}
+{#                                <th scope="col">Ölçü (mm)</th>#}
+{#                                <th scope="col">Adet</th>#}
+{#                                <th scope="col">Toplam Ölçü (mm)</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            <tr>#}
+{#                                <th scope="row">YARIM ARA KENET</th>#}
+{#                                <td>{{ work_order.pass_width|add:10 }}</td>#}
+{#                                <td>1</td>#}
+{#                                <td>{{ work_order.pass_width|add:10 }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="row">TEK CAM ÇITASI YATAY</th>#}
+{#                                <td>{{ kanat_genisligi|add:-54 }}</td>#}
+{#                                <td>4</td>#}
+{#                                <td>{{ kanat_genisligi|add:-54|mul:4 }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="row">TEK CAM ÇITASI DİKEY</th>#}
+{#                                <td>{{ work_order.pass_height|add:-140 }}</td>#}
+{#                                <td>4</td>#}
+{#                                <td>{{ work_order.pass_height|add:-140|mul:4 }}</td>#}
+{#                            </tr>#}
+{#                            <tr>#}
+{#                                <th scope="row">FIRÇA PLASTİK ADAPTÖRÜ</th>#}
+{#                                <td>{{ kanat_genisligi|add:-30 }}</td>#}
+{#                                <td>2</td>#}
+{#                                <td>{{ kanat_genisligi|add:-30|mul:2 }}</td>#}
+{#                            </tr>#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                    <div class="col-md-12">#}
+{#                        <table class="table table-bordered">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <th>Tipi</th>#}
+{#                                <th scope="col">En</th>#}
+{#                                <th scope="col">Boy</th>#}
+{#                                <th scope="col">Adet</th>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            <tr>#}
+{#                                <td>HAREKETLİ CAM ÖLÇÜSÜ</td>#}
+{#                                <td>{{ kanat_genisligi|add:-64 }}</td>#}
+{#                                <td>{{ work_order.pass_height|add:-120 }}</td>#}
+{#                                <td>2</td>#}
+{#                            </tr>#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                        <h4 style="text-align: center">Opsiyonlar</h4>#}
+{#                        <table class="table table-bordered">#}
+{#                            <tbody>#}
+{#                            {% for option in work_order.get_display_options %}#}
+{#                                {% if forloop.counter0|divisibleby:2 and not forloop.first %}#}
+{#                                    <tr>{% endif %}#}
+{#                            {% if forloop.counter0|divisibleby:2 %}</tr>{% endif %}#}
+{#                                <td><i class="fa fa-dot-circle-o"></i> {{ option }}</td>#}
+{#                            {% empty %}#}
+{#                                <td><i class="fa fa-dot-circle-o"></i> Opsiyon Eklenmemiş</td>#}
+{#                            {% endfor %}#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                        <h4 style="text-align: center">Radar ve Aktivasyon Seçenekleri</h4>#}
+{#                        <table class="table table-bordered">#}
+{#                            <tbody>#}
+{#                            {% for radar in work_order.get_display_radar_activations %}#}
+{#                                {% if forloop.counter0|divisibleby:2 and not forloop.first %}#}
+{#                                    <tr>{% endif %}#}
+{#                            {% if forloop.counter0|divisibleby:2 %}</tr>{% endif %}#}
+{#                                <td><i class="fa fa-dot-circle-o"></i> {{ radar }}</td>#}
+{#                            {% empty %}#}
+{#                                <td><i class="fa fa-dot-circle-o"></i> Radar veya Aktivasyon Seçeneği Eklenmemiş</td>#}
+{#                            {% endfor %}#}
+{#                            </tbody>#}
+{#                        </table>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div>Not: {% firstof work_order.notes|safe '-' %}</div>#}
+{#                <br>#}
+{#                {% include 'sld/parts/attendant.html' %}#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="tab-pane fade show p-3" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">#}
+{#            <div class="container">#}
+{#                <div class="row">#}
+{#                    <div class="col-xs-12">#}
+{#                        <div class="text-on-image">#}
+{#                            <div class="text" style="right: 7%; top: 20%">{{ work_order.pass_width|add:30 }}</div>#}
+{#                            <div class="text" style="left: 6%; top: 20%">{{ work_order.pass_width|add:30 }}</div>#}
+{#                            <div class="text" style="left: 30%; bottom: 25%">{{ gecis_genisligi }}</div>#}
+{#                            <img src="{% static 'img/sld/th_standart_mekanizma_imalati/mekanizma.png' %}">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-xs-12">#}
+{#                        <div class="text-on-image">#}
+{#                            <img src="{% static 'img/sld/th_standart_mekanizma_imalati/mekanizma2.png' %}">#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">Radar</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/ray.png' %}">#}
+{#                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">YURUME YOLU</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/yurume_yolu.png' %}">#}
+{#                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">YURUME YOLU FITILI</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/yurume_yolu_fitili.png' %}">#}
+{#                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">KAPAK</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kapak.png' %}">#}
+{#                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">KAPAK FITILI</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kapak_fitili.png' %}">#}
+{#                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">TOZ KORUMA</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/toz_koruma.png' %}">#}
+{#                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">TOZ KORUMA FIRÇASI</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/toz_koruma_fircasi.png' %}">#}
+{#                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (2 Adet)</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">COMBO CORE KIT</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/combo_core_kiti.png' %}">#}
+{#                        <p>1 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">AVARE MAKARA</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/avare_makara.png' %}">#}
+{#                        <p>1 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">DİŞLİ KAYIŞ</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/disli_kayis.png' %}">#}
+{#                        <p>{{ kanat_genisligi|mul:2 }} mm</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">TAŞIYICI MAKARA</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/tasiyici_makara.png' %}">#}
+{#                        <p>2 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">KANAT ASKI AYAGI</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kanat_aski_ayagi.png' %}">#}
+{#                        <p>2 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">KAYIŞ BAĞLANTI AYAGI</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kayis_baglanti_ayagi.png' %}">#}
+{#                        <p>1 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">KANAT ASKI AYAGI</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kanat_aski_ayagi.png' %}">#}
+{#                        <p>1 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">YAN KAPAK SAG/SOL</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/yan_kapak_sag_sol.png' %}">#}
+{#                        <p>1 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">STOPPER SAG/SOL</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/stopper_sag_sol.png' %}">#}
+{#                        <p>1 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">KABLO TUTUCU</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kablo_tutucu.png' %}">#}
+{#                        <p>2 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">KAYIŞ TUTUCU</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kayis_tutucu.png' %}">#}
+{#                        <p>1 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">ELEKTRONIK KILIT</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/elektronik_kilit.png' %}">#}
+{#                        <p>1 Adet</p>#}
+{#                    </div>#}
+{#                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">#}
+{#                        <p style="color: red; font-weight: bold">AKÜ</p>#}
+{#                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/aku.png' %}">#}
+{#                        <p>1 Adet</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% include 'sld/parts/attendant.html' %}#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="tab-pane fade show p-3" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">#}
+{#            <div class="container">#}
+{#                <h3>Kanat İmalatı</h3>#}
+{#                <div class="row g-2">#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Dikme</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/dikme.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>{{ work_order.pass_height }} mm</td>#}
+{#                                    <td>2 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Alt Etek</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/alt_etek.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>{{ kanat_genisligi|add:-48 }} mm</td>#}
+{#                                    <td>2 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Alt Etek</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/alt_etek.png' %}"#}
+{#                                             class="rounded-3" alt="...">#}
+{#                                    </td>#}
+{#                                    <td>{{ kanat_genisligi|add:-48 }} mm</td>#}
+{#                                    <td>2 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Ust Etek</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/ust_etek.png' %}"#}
+{#                                             class="rounded-3" alt="...">#}
+{#                                    </td>#}
+{#                                    <td>{{ kanat_genisligi|add:-48 }} mm</td>#}
+{#                                    <td>2 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Kenet</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/kenet.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>{{ work_order.pass_height }} mm</td>#}
+{#                                    <td>2 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Yarim Kenet</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/yarim_kenet.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>{{ work_order.pass_width|add:10 }} mm</td>#}
+{#                                    <td>2 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Tek cam Citasi</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/tek_cam_citasi.png' %}">#}
+{#                                    </td>#}
+{#                                    <td><small>{{ kanat_genisligi|add:-54 }} mm (yatay)#}
+{#                                        - {{ work_order.pass_height|add:-140 }} mm (Dikey)</small></td>#}
+{#                                    <td>2 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Sase</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/sase.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>{{ work_order.pass_width|mul:2|add:100 }} mm</td>#}
+{#                                    <td>1 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Plastik firca adaptoru</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/plastik_firca_adaptoru.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>{{ kanat_genisligi|add:-30 }} mm</td>#}
+{#                                    <td>1 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Kilavuz</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/klavuz.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>1 set</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Aski lamasi</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/aski_yamasi.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>2 set</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Alin fitili</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/alin_fitili.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>1 adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Cam fitili dis</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/cam_fitili_dis.png' %}">#}
+{#                                    </td>#}
+{#                                    <td><small>{{ kanat_genisligi|add:-64 }} mm (en)#}
+{#                                        - {{ work_order.pass_height|add:-115 }} mm (boy)</small></td>#}
+{#                                    <td>2 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Cam fitili ic</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/cam_fitili_ic.png' %}">#}
+{#                                    </td>#}
+{#                                    <td><small>{{ kanat_genisligi|add:-64 }} mm (en)#}
+{#                                        - {{ work_order.pass_height|add:-115 }} mm (boy)</small></td>#}
+{#                                    <td>2 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Kil fitil</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/kil_fitili.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>{{ work_order.pass_height }} mm</td>#}
+{#                                    <td>1 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Kil fitil</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/kil_fitili.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>{{ work_order.pass_height }} mm</td>#}
+{#                                    <td>1 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Firca</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/firca.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>{{ kanat_genisligi|add:-30 }} mm</td>#}
+{#                                    <td>1 Adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Sabit kanat sase baglanti</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/sabit_kanat_sase_baglanti.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>1 adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="col-6">#}
+{#                        <div class="p-3 border bg-light">#}
+{#                            <table class="table table-borderless">#}
+{#                                <tbody>#}
+{#                                <tr>#}
+{#                                    <th>Isi cam citasi</th>#}
+{#                                    <td>#}
+{#                                        <img height="45px"#}
+{#                                             src="{% static 'img/sld/th_standart_kanat_imalati/isi_cam_citasi.png' %}">#}
+{#                                    </td>#}
+{#                                    <td>1 adet</td>#}
+{#                                </tr>#}
+{#                                </tbody>#}
+{#                            </table>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <br><br>#}
+{#                {% include 'sld/parts/attendant.html' %}#}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#        <div class="tab-pane fade show p-3" id="nav-homeyedek" role="tabpanel" aria-labelledby="nav-homeyedek-tab">#}
+{#            <div class="container">#}
+{#                <div class="row">#}
+{#                    <div class="col-xs-12">#}
+{#                        <h3>Kanat İmalatı 2</h3>#}
+{#                    </div>#}
+{#                    <div class="col-md-12 text-on-image">#}
+{#                        <img src="{% static 'img/sld/th_standart_kanat_imalati/goruntu1.png' %}" alt="">#}
+{#                        <div class="text" style="bottom: 16%; left: 42%">Kanat Genişliği = {{ kanat_genisligi }}</div>#}
+{#                    </div>#}
+{#                    <div class="col-md-4 text-on-image">#}
+{#                        <img src="{% static 'img/sld/th_standart_kanat_imalati/goruntu2.png' %}" alt="">#}
+{#                        <div class="text" style="top: 40%; left: -8%; transform: rotate(-90deg)">Kanat Yüksekliği#}
+{#                            = {{ work_order.pass_height }}</div>#}
+{#                    </div>#}
+{#                    <div class="col-md-8 text-on-image">#}
+{#                        <img src="{% static 'img/sld/th_standart_kanat_imalati/goruntu3.png' %}" alt="">#}
+{#                        <div class="text" style="top: 35%; right: 11%; transform: rotate(90deg)">Dikme Yüksekliği#}
+{#                            = {{ work_order.pass_height }}</div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% include 'sld/parts/attendant.html' %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endwith %}#}
+

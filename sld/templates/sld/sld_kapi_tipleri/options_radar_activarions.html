@@ -1,0 +1,25 @@
+<h3 style="text-align: center;">OPSİYONLAR</h3>
+<table class="table table-bordered">
+    <tbody>
+    {% for option in is_emri.get_display_options %}
+        {% if forloop.counter0|divisibleby:2 and not forloop.first %}<tr>{% endif %}
+        {% if forloop.counter0|divisibleby:2 %}<tr>{% endif %}
+        <td>{{ option }}</td>
+    {% empty %}
+        <p>Opsiyon Eklenmemiş</p>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h3 style="text-align: center;">RADAR ve AKTİVASYON SEÇENEKLERİ</h3>
+<table class="table table-bordered">
+    <tbody>
+    {% for radar in is_emri.get_display_radar_activations %}
+        {% if forloop.counter0|divisibleby:2 and not forloop.first %}<tr>{% endif %}
+        {% if forloop.counter0|divisibleby:2 %}<tr>{% endif %}
+        <td>{{ radar }}</td>
+    {% empty %}
+        <p>Radar veya Aktivasyon Seçeneği Eklenmemiş</p>
+    {% endfor %}
+    </tbody>
+</table>

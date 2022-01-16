@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-{#    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">#}
+    <link rel="stylesheet" href="{% static 'css/sld/bootstrap.min.css' %}">
 
 
     <title>{% block  page_title %}BASE{% endblock %}</title>
@@ -21,7 +21,8 @@
 
 {% include 'footer.html' %}
 
-<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/sld/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/sld/bootstrap.min.js' %}"></script>
 
 
 {% block extra_script %}

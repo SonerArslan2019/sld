@@ -1,16 +1,16 @@
 $(document).ready(function () {
-    const kapi_tipi_div = $('#div_id_door_type');
-    const gecis_genisligi_div = $('#div_id_pass_width');
-    const gecis_yuksekligi_div = $('#div_id_pass_height');
-    const toplam_genislik_div = $('#div_id_total_width');
-    const toplam_yukseklik_div = $('#div_id_total_height');
-    const mekanizma_genisligi_div = $('#div_id_mechanism_width');
+    const kapi_tipi_div = $('#div_id_kapi_tipi');
+    const gecis_genisligi_div = $('#div_id_gecis_genisligi');
+    const gecis_yuksekligi_div = $('#div_id_gecis_yuksekligi');
+    const toplam_genislik_div = $('#div_id_toplam_genislik');
+    const toplam_yukseklik_div = $('#div_id_toplam_yukseklik');
+    const mekanizma_genisligi_div = $('#div_id_mekanizma_genisligi');
     const ustluk_div = $('#div_id_ustluk');
-    const cam_div = $('#div_id_glass');
-    const acilis_yonu_div = $('#div_id_opening_direction');
-    const bitis_div = $('#div_id_color');
-    const opsiyonlar_div = $('#div_id_options');
-    const radar_aktivasyonlar_div = $('#div_id_radar_activations');
+    const cam_div = $('#div_id_cam');
+    const acilis_yonu_div = $('#div_id_acilis_yonu');
+    const bitis_div = $('#div_id_bitis');
+    const opsiyonlar_div = $('#div_id_opsiyonlar');
+    const radar_aktivasyonlar_div = $('#div_id_radar_aktivasyonlar');
 
     let selected_door = '';
 
