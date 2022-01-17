@@ -314,7 +314,7 @@ $(document).ready(function () {
             $('select[name=door_type] option').removeAttr('selected');
             $('select[name=door_type] option[value='+ selected_door +']').prop('selected', 'selected');
 
-            if(selected_door == 'th_standart' || selected_door == 'ih_standart'){
+            if(selected_door === 'th_standart' || selected_door === 'ih_standart'){
 
                 toplam_genislik_div.hide();
                 toplam_yukseklik_div.show();
@@ -332,7 +332,7 @@ $(document).ready(function () {
                 });
 
             }
-            else if (selected_door == 'ts_th_standart' || selected_door == 'is_ih_standart'){
+            else if (selected_door === 'ts_th_standart' || selected_door === 'is_ih_standart'){
                 mekanizma_genisligi_div.hide();
                 toplam_yukseklik_div.show();
                 toplam_genislik_div.show();
@@ -351,7 +351,7 @@ $(document).ready(function () {
 
             } // else if
 
-            if(selected_door == 'ts_th_standart'  || selected_door == 'th_standart'){
+            if(selected_door === 'ts_th_standart'  || selected_door === 'th_standart'){
                 acilis_yonu_div.show();
             }
             else{
@@ -363,8 +363,8 @@ $(document).ready(function () {
         });
 
         $('input[name=pass_height]').change(function () {
-            if ((selected_door == 'ts_th_standart' ||
-                selected_door == 'is_ih_standart') &&
+            if ((selected_door === 'ts_th_standart' ||
+                selected_door === 'is_ih_standart') &&
                 !ustluk_div.find('input').first().checked){
                 // calculation of pass_heigth
             }
@@ -380,7 +380,7 @@ $(document).ready(function () {
     $('<label/>', {class: 'col-form-label', text:'Opsiyonlar'}).appendTo(options_form_group);
 
     $(options_list).each(function (i, option) {
-        if (i % 2 == 0){
+        if (i % 2 === 0){
             options_form_group.append($('<div/>', {class: 'specifications door-options', id: `option-${i / 2}`}));
         }
         let option_div= $('<div/>', {
@@ -409,7 +409,7 @@ $(document).ready(function () {
         let curr_value = $(this).val();
 
         if(this.checked){
-            if(input.val() == '')
+            if(input.val() === '')
                 input.val(curr_value);
             else
                 input.val(input.val() + ' ' + curr_value);
@@ -427,7 +427,7 @@ $(document).ready(function () {
     $('<label/>', {class: 'col-form-label', text:'Radar Ve Aktivasyonlar'}).appendTo(radar_form_group);
 
     $(radar_activation_list).each(function (i, radar) {
-        if (i % 2 == 0){
+        if (i % 2 === 0){
             radar_form_group.append($('<div/>', {class: 'specifications door-radars', id: `radar-${i / 2}`}));
         }
         let radar_div= $('<div/>', {
@@ -457,7 +457,7 @@ $(document).ready(function () {
         let input = radar_aktivasyonlar_div.find('input');
 
         if(this.checked){
-            if(input.val() == '')
+            if(input.val() === '')
                 input.val(curr_value);
             else
                 input.val(input.val() + ' ' + curr_value);
@@ -465,15 +465,15 @@ $(document).ready(function () {
         else {
             input.val(input.val().replace(curr_value, '').replace('  ', ' '));
         }
-        if(curr_value == 'mikrodalga_radar' || curr_value == 'yaklasim_sensoru'){
+        if(curr_value === 'mikrodalga_radar' || curr_value === 'yaklasim_sensoru'){
             let emniyet_fotoseli = $('.door-radars input[value=emniyet_fotoseli]');
             this.checked ? emniyet_fotoseli.prop('checked', true).change() : emniyet_fotoseli.prop('checked', false).change();
         }
-        if(curr_value == 'emniyet_fotoseli'){
+        if(curr_value === 'emniyet_fotoseli'){
             let combine_safety = $('.door-radars input[value=combine_safety_activation]');
             this.checked ? combine_safety.prop('disabled', true) : combine_safety.prop('disabled', false);
         }
-        if(curr_value == 'combine_safety_activation'){
+        if(curr_value === 'combine_safety_activation'){
             let emniyet_fotoseli = $('.door-radars input[value=emniyet_fotoseli]');
             this.checked ? emniyet_fotoseli.prop('disabled', true) : emniyet_fotoseli.prop('disabled', false);
         }
