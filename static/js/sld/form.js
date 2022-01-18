@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     const doors = [
         {
-            name: "Düz",
+            name: "Duz",
             types: [
                 {
                     name:  "TEK HAREKETLİ",
@@ -76,7 +76,7 @@ $(document).ready(function () {
                 {
                     name:  "İKİ HRK. + TEK SBT.",
                     short: "ih_ts_teleskop",
-                    image: "/static/img/sld/ts_ih_ts_teleskop.png",
+                    image: "/static/img/sld/ts_ih_is_teleskop.png",
                 },
                 {
                     name:  "DÖRT HAREKETLİ",
