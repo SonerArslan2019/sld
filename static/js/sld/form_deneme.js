@@ -200,7 +200,49 @@ $(document).ready(function () {
                     toplam_genislik_div.find('input').val($(this).val() * 2);
                 });
 
+            }
+            else if (selected_door === 'ts_th_cam' || selected_door === 'is_ih_cam'){
+
+                gecis_genisligi_div.show();
+                gecis_yuksekligi_div.show();
+                mekanizma_genisligi_div.hide();
+                toplam_yukseklik_div.show();
+                toplam_genislik_div.show();
+                ustluk_div.show();
+
+                ustluk_div.find('input').checked = false;
+                mekanizma_genisligi_div.find('input').val('');
+
+                // toplam yükseklik ve genişliği hesaplama
+                gecis_yuksekligi_div.find('input').change(function () {
+                    toplam_yukseklik_div.find('input').val(parseInt($(this).val()) + 120);
+                });
+                gecis_genisligi_div.find('input').change(function () {
+                    toplam_genislik_div.find('input').val($(this).val() * 2);
+                });
+
             } // else if
+            else if (selected_door === 'ts_th_cam' || selected_door === 'is_ih_cam'){
+
+                gecis_genisligi_div.show();
+                gecis_yuksekligi_div.show();
+                mekanizma_genisligi_div.hide();
+                toplam_yukseklik_div.show();
+                toplam_genislik_div.show();
+                ustluk_div.show();
+
+                ustluk_div.find('input').checked = false;
+                mekanizma_genisligi_div.find('input').val('');
+
+                // toplam yükseklik ve genişliği hesaplama
+                gecis_yuksekligi_div.find('input').change(function () {
+                    toplam_yukseklik_div.find('input').val(parseInt($(this).val()) + 120);
+                });
+                gecis_genisligi_div.find('input').change(function () {
+                    toplam_genislik_div.find('input').val($(this).val() * 2);
+                });
+
+            }
 
             if(selected_door === 'ts_th_standart'  || selected_door === 'th_standart'){
                 acilis_yonu_div.show();
@@ -223,4 +265,100 @@ $(document).ready(function () {
             }
         });
     });
+
+    door_name.find('select').change(function () {
+        $('.types').remove();
+
+        let name = $(this).val();
+        let door = doors.find(door => door.name === name);
+        let types_div = $('<div/>',{
+            'class': 'types form-group'
+        }).insertAfter(door_name);
+
+        $(door.types).each(function (i, typ) {
+            // TODO edit image url with varibale
+            let bg = $('<div/>', {
+                'class': 'background',
+                'style': 'background-image: url(' + typ.image + ')'
+            }).appendTo(types_div);
+
+            bg.append(`<p>${typ.name}</p>`);
+
+            $('<input/>', {
+                'name': 'type-of-door',
+                'value': typ.short,
+                'type': 'radio',
+            }).appendTo(bg);
+        });
+
+        $('input[name=type-of-door]').click(function(){
+            selected_door = $(this).val();
+            $('select[name=door_type] option').removeAttr('selected');
+            $('select[name=door_type] option[value='+ selected_door +']').prop('selected', 'selected');
+
+            if(selected_door === 'th_cam' || selected_door === 'ih_cam'){
+
+                toplam_genislik_div.hide();
+                toplam_yukseklik_div.show();
+                mekanizma_genisligi_div.show();
+                ustluk_div.hide();
+                gecis_genisligi_div.show();
+                gecis_yuksekligi_div.show();
+
+                toplam_genislik_div.find('input').val('');
+                toplam_yukseklik_div.find('input').val('');
+
+                gecis_yuksekligi_div.find('input').change(function () {
+                    toplam_yukseklik_div.find('input').val(parseInt($(this).val()) + 110);
+                });
+                gecis_genisligi_div.find('input').change(function () {
+                    mekanizma_genisligi_div.find('input').val(parseInt($(this).val()));
+                });
+
+            }
+            else if (selected_door === 'ts_th_cam' || selected_door === 'is_ih_cam'){
+
+                gecis_genisligi_div.show();
+                gecis_yuksekligi_div.show();
+                mekanizma_genisligi_div.hide();
+                toplam_yukseklik_div.show();
+                toplam_genislik_div.show();
+                ustluk_div.show();
+
+                ustluk_div.find('input').checked = false;
+                mekanizma_genisligi_div.find('input').val('');
+
+                // toplam yükseklik ve genişliği hesaplama
+                gecis_yuksekligi_div.find('input').change(function () {
+                    toplam_yukseklik_div.find('input').val(parseInt($(this).val()) + 120);
+                });
+                gecis_genisligi_div.find('input').change(function () {
+                    toplam_genislik_div.find('input').val($(this).val() * 2);
+                });
+
+            } // else if
+
+            if(selected_door === 'ts_th_cam'  || selected_door === 'th_cam'){
+                acilis_yonu_div.show();
+            }
+            else{
+                acilis_yonu_div.hide();
+                acilis_yonu_div.find('option:selected').prop('selected', false).removeAttr('selected');
+                acilis_yonu_div.find('option:first').prop('selected', 'selected');
+
+            }
+        });
+
+        $('input[name=pass_height]').change(function () {
+            if ((selected_door === 'ts_th_cam' ||
+                selected_door === 'is_ih_cam') &&
+                !ustluk_div.find('input').first().checked){
+                // calculation of pass_heigth
+                ustluk_div.find('input').change(function () {
+                });
+            }
+        });
+    });
+
+
 });
