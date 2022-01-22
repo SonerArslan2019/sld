@@ -298,9 +298,6 @@ $(document).ready(function () {
                     ustluk_div.find('input').first().checked) {
 
 
-
-
-
                     // calculation of pass_heigth
                     gecis_genisligi_div.find('input').change(function () {
                         toplam_genislik_div.find('input').val($(this).val() * 2);

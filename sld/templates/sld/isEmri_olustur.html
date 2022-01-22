@@ -27,7 +27,7 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            <form method="post" action="{% url 'sld:isEmri_olustur' %}" class="">
+            <form method="POST" action="{% url 'sld:isEmri_olustur' %}">
                 {% csrf_token %}
                 {{ form | crispy }}
                 {% load bootstrap4 %}
@@ -35,8 +35,8 @@
                 {% bootstrap_javascript jquery='full' %}
                 {{ form.media }}
                 <br>
-                <div>
-                    <input type="submit" value="Is Emri Olustur">
+                <div style="text-align: center;">
+                    <input type="submit" value="Olustur" class="btn btn-primary btn-sm"/>
                 </div>
             </form>
         </div>
@@ -44,7 +44,7 @@
 {% endblock body %}
 
 {% block extra_script %}
-    <script src="{% static 'js/sld/form_deneme.js' %}"></script>
+    <script src="{% static 'js/sld/form.js' %}"></script>
 {% endblock %}
 
 
@@ -62,8 +62,8 @@
 {##}
 {#{% block body %}#}
 {##}
-    {#    {% include 'navbar.html' %}#}
-    {#    <br>#}
+{#    {% include 'navbar.html' %}#}
+{#    <br>#}
 {#    <div class="container">#}
 {#        <div class="row">#}
 {#            <div class="col-md-5"><h4>İŞ EMRİ</h4></div>#}

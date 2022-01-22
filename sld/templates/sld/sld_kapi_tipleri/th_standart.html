@@ -2,435 +2,152 @@
 {% load extra_tags %}
 {% load th_standart %}
 
-{% with kanat_genisligi=is_emri.pass_width|add:84 %}
-    {% include 'sld/sld_kapi_tipleri/tab_menu.html' %}
+{% with kanat_genisligi=is_emri.gecis_genisligi|add:84 %}
+    <div>
+            <table>
+                <tr>
+                    <td>CRM</td>
+                    <td>{{ is_emri.crm }}</td>
+                </tr>
+                <tr>
+                    <td>Firma</td>
+                    <td>{{ is_emri.firma_bilgileri }}</td>
+                </tr>
+                <tr>
+                    <td>Geçiş Genişliği</td>
+                    <td>{{ kanat_genisligi|add:-84 }}</td>
+                </tr>
+                <tr>
+                    <td>Geçiş Yüksekliği</td>
+                    <td>{{ is_emri.gecis_yuksekligi }}</td>
+                </tr>
+                <tr>
+                    <td>Kanat Gemişliği</td>
+                    <td>{{ kanat_genisligi }}</td>
+                </tr>
+                <tr>
+                    <td>Toplam Yükseklik</td>
+                    <td>{{ is_emri.gecis_yuksekligi|add:110 }}</td>
+                </tr>
+                <tr>
+                    <td>Cam Türü</td>
+                    <td>{{ is_emri.cam }}</td>
+                </tr>
+                <tr>
+                    <td>Renk</td>
+                    <td>{{ is_emri.bitis }}</td>
+                </tr>
+                <tr>
+                    <td>Teslim Tarihi</td>
+                    <td>{{ is_emri.teslim_tarihi|date:'d.m.Y' }}</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Parça</th>
+                    <th>Ölçü (mm)</th>
+                    <th>Adet</th>
+                    <th>Toplam Ölçü (mm)</th>
+                </tr>
+                </thead>
+                <tbody>
 
-    <div class="tab-content container-fluid">
-        <div id="home" {% if not print %}class="tab-pane fade in active"{% endif %}>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>CRM</th>
-                                <th>{{ is_emri.crm }}</th>
-                                <th>Firma</th>
-                                <th>{{ is_emri.company }}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>G.Genişlik</td>
-                                <td>{{ is_emri.pass_width }}</td>
-                                <td>G.Yüksekliği</td>
-                                <td>{{ is_emri.pass_height }}</td>
-                            </tr>
-                            <tr>
-                                <td>Mekanizma Genişliği</td>
-                                <td>{{ is_emri.mechanism_width }}</td>
-                                <td>Mekanizma Dahil Yükseklik</td>
-                                <td>{{ is_emri.pass_height|add:120 }}</td>
-                            </tr>
-                            <tr>
-                                <td>Cam Türü</td>
-                                <td>{{ is_emri.glass }}</td>
-                                <td>Renk</td>
-                                <td>{{ is_emri.color }}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>Teslim Tarihi</td>
-                                <td>{{ is_emri.delivery_date|date:'d.m.Y' }}</td>
-                            </tr>
-                            <tr>
-                                <td>Sevk Adresi</td>
-                                <td>{{ is_emri.delivery_address  }}</td>
-                                <td>Teslim Şekli</td>
-                                <td>{{ is_emri.delivery_type }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6 text-on-image d-flex align-items-center justify-content-center">
-                        <div class="d-flex align-items-center justify-content-center position-relative">                        {% if is_emri.opening_direction == 'sol' %}
-                            <div class="text" style="left: 47%; top: -2%">{{ is_emri.mechanism_width }}</div>
-                            <div class="text" style="right: 10%; top: 43%; transform: rotate(90deg)" >{{ is_emri.pass_height }}</div>
-                            <div class="text" style="left: 57%; bottom: 13%" >{{ is_emri.pass_width }}</div>
-                            <div class="text" style="left: 57%; bottom: 2%" >{{ is_emri.pass_width|add:84 }}</div>
-                            <img src="{% static 'img/sld/th_standart_sol.png' %}">
-                        {% else %}
-                            <div class="text" style="left: 47%;top: 1%">{{ is_emri.mechanism_width }}</div>
-                            <div class="text" style="left: 8%; top: 37%; transform: rotate(-90deg) " >{{ is_emri.pass_height }}</div>
-                            <div class="text" style="left: 32%; bottom: 19%" >{{ is_emri.pass_width }}</div>
-                            <div class="text" style="left: 32%; bottom: 5%" >{{ is_emri.pass_width|add:84 }}</div>
-                            <img src="{% static 'img/sld/th_standart_sag.png' %}">
-                        {% endif %}
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th scope="col">Parça</th>
-                                <th scope="col">Ölçü (mm)</th>
-                                <th scope="col">Adet</th>
-                                <th scope="col">Toplam Ölçü (mm)</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">RAY VE KAPAK UZUNLUĞU</th>
-                                <td>{{ kanat_genisligi|add:8 }}</td>
-                                <td>1</td>
-                                <td>{{ is_emri.pass_width|add:8 }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">ETEK KESİM ÖLÇÜSÜ</th>
-                                <td>{{ kanat_genisligi|add:-48 }}</td>
-                                <td>4</td>
-                                <td> {{ kanat_genisligi|add:-48|mul:4 }} </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">DİKME</th>
-                                <td>{{ is_emri.pass_height }}</td>
-                                <td>2</td>
-                                <td>{{ is_emri.pass_height|mul:2 }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">KENET</th>
-                                <td>{{ is_emri.pass_height }}</td>
-                                <td>1</td>
-                                <td>{{ is_emri.pass_height|mul:1 }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">YARIM KENET</th>
-                                <td>{{ is_emri.pass_height }}</td>
-                                <td>2</td>
-                                <td>{{ is_emri.pass_height|mul:2 }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th scope="col">Parça</th>
-                                <th scope="col">Ölçü (mm)</th>
-                                <th scope="col">Adet</th>
-                                <th scope="col">Toplam Ölçü (mm)</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">YARIM ARA KENET</th>
-                                <td>{{ is_emri.pass_width|add:10 }}</td>
-                                <td>1</td>
-                                <td>{{ is_emri.pass_width|add:10 }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">TEK CAM ÇITASI YATAY</th>
-                                <td>{{ kanat_genisligi|add:-54 }}</td>
-                                <td>2</td>
-                                <td>{{ kanat_genisligi|add:-54|mul:2 }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">TEK CAM ÇITASI DİKEY </th>
-                                <td>{{ is_emri.pass_height|add:-140 }}</td>
-                                <td>2</td>
-                                <td>{{  is_emri.pass_height|add:-140|mul:2 }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">FIRÇA PLASTİK ADAPTÖRÜ</th>
-                                <td>{{ kanat_genisligi|add:-30 }}</td>
-                                <td>1</td>
-                                <td>{{ kanat_genisligi|add:-30 }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th scope="col" colspan="3">Hareketli Cam Ölçüsü</th>
-                        </tr>
-                        <tr>
-                            <th scope="col">En</th>
-                            <th scope="col">Boy</th>
-                            <th scope="col">Adet</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{  is_emri.pass_width|add:20 }}</td>
-                            <td>{{ is_emri.pass_height|add:-115 }}</td>
-                            <td>1</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-bordered">
-                        <tbody>
-                        {% for option in is_emri.get_display_options %}
-                            {% if forloop.counter0|divisibleby:2 and not forloop.first %}<tr>{% endif %}
-                            {% if forloop.counter0|divisibleby:2 %}<tr>{% endif %}
-                            <td>{{ option }}</td>
-                        {% empty %}
-                            <td>Opsiyon Eklenmemiş</td>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table table-bordered">
-                        <tbody>
-                        {% for radar in is_emri.get_display_radar_activations %}
-                            {% if forloop.counter0|divisibleby:2 and not forloop.first %}<tr>{% endif %}
-                            {% if forloop.counter0|divisibleby:2 %}<tr>{% endif %}
-                            <td>{{ radar }}</td>
-                        {% empty %}
-                            <td>Radar veya Aktivasyon Seçeneği Eklenmemiş</td>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div>Not: {% firstof is_emri.notes|safe '-' %}</div>
-                {% include 'sld/sld_kapi_tipleri/attendant.html' %}
-            </div>
+                <tr>
+                    <th>RAY VE KAPAK UZUNLUĞU</th>
+                    <td>{{ is_emri.gecis_genisligi|mul:2|add:100 }}</td>
+                    <td>1</td>
+                    <td>{{ is_emri.gecis_genisligi|mul:2|add:100 }}</td>
+                </tr>
+                <tr>
+                    <th>ETEK KESİM ÖLÇÜSÜ</th>
+                    <td>{{ kanat_genisligi|add:-48 }}</td>
+                    <td>4</td>
+                    <td> {{ kanat_genisligi|add:-48|mul:4 }} </td>
+                </tr>
+                <tr>
+                    <th>DİKME</th>
+                    <td>{{ is_emri.gecis_yuksekligi }}</td>
+                    <td>4</td>
+                    <td>{{ is_emri.gecis_yuksekligi|mul:4 }}</td>
+                </tr>
+                <tr>
+                    <th>KENET</th>
+                    <td>{{ is_emri.gecis_yuksekligi }}</td>
+                    <td>2</td>
+                    <td>{{ is_emri.gecis_yuksekligi|mul:2 }}</td>
+                </tr>
+                <tr>
+                    <th>YARIM KENET</th>
+                    <td>{{ is_emri.gecis_yuksekligi }}</td>
+                    <td>2</td>
+                    <td>{{ is_emri.gecis_yuksekligi|mul:2 }}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div id='menu1' {% if not print %}class="tab-pane fade"{% endif %}>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="text-on-image">
-                            <div class="text" style="right: 7%; top: 20%">{{ is_emri.pass_width|add:30 }}</div>
-                            <div class="text" style="left: 6%; top: 20%">{{ is_emri.pass_width|add:30 }}</div>
-                            <div class="text" style="left: 30%; bottom: 25%">{{ is_emri.mechanism_width|div_int:2}}</div>
-                            <img src="{% static 'img/sld/th_standart_mekanizma_imalati/mekanizma.png' %}">
-                        </div>
-                        <div class="text-on-image">
-                            <img src="{% static 'img/sld/th_standart_mekanizma_imalati/mekanizma2.png' %}">
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">Radar</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/ray.png' %}">
-                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">YURUME YOLU</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/yurume_yolu.png' %}">
-                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">YURUME YOLU FITILI</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/yurume_yolu_fitili.png' %}">
-                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KAPAK</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kapak.png' %}">
-                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KAPAK FITILI</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kapak_fitili.png' %}">
-                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">TOZ KORUMA</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/toz_koruma.png' %}">
-                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (1 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">TOZ KORUMA FIRÇASI</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/toz_koruma_fircasi.png' %}">
-                        <p>{{ kanat_genisligi|mul:2|add:8 }} mm (2 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">COMBO CORE KIT</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/combo_core_kiti.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">AVARE MAKARA</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/avare_makara.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">DİŞLİ KAYIŞ</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/disli_kayis.png' %}">
-                        <p>{{ kanat_genisligi|mul:2 }} mm</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">TAŞIYICI MAKARA</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/tasiyici_makara.png' %}">
-                        <p>2 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KANAT ASKI AYAGI</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kanat_aski_ayagi.png' %}">
-                        <p>2 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KAYIŞ BAĞLANTI AYAGI</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kayis_baglanti_ayagi.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KANAT ASKI AYAGI</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kanat_aski_ayagi.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">YAN KAPAK SAG/SOL</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/yan_kapak_sag_sol.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">STOPPER SAG/SOL</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/stopper_sag_sol.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KABLO TUTUCU</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kablo_tutucu.png' %}">
-                        <p>2 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KAYIŞ TUTUCU</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/kayis_tutucu.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">ELEKTRONIK KILIT</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/elektronik_kilit.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">AKÜ</p>
-                        <img src="{% static 'img/sld/th_standart_mekanizma_imalati/aku.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                </div>
-            </div>
+        <hr>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Parça</th>
+                    <th>Ölçü (mm)</th>
+                    <th>Adet</th>
+                    <th>Toplam Ölçü (mm)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>YARIM ARA KENET</th>
+                    <td>{{ is_emri.gecis_genisligi|add:10 }}</td>
+                    <td>1</td>
+                    <td>{{ is_emri.gecis_genisligi|add:10 }}</td>
+                </tr>
+                <tr>
+                    <th>TEK CAM ÇITASI YATAY</th>
+                    <td>{{ kanat_genisligi|add:-54 }}</td>
+                    <td>4</td>
+                    <td>{{ kanat_genisligi|add:-54|mul:4 }}</td>
+                </tr>
+                <tr>
+                    <th>TEK CAM ÇITASI DİKEY</th>
+                    <td>{{ is_emri.gecis_yuksekligi|add:-140 }}</td>
+                    <td>4</td>
+                    <td>{{ is_emri.gecis_yuksekligi|add:-140|mul:4 }}</td>
+                </tr>
+                <tr>
+                    <th>FIRÇA PLASTİK ADAPTÖRÜ</th>
+                    <td>{{ kanat_genisligi|add:-30 }}</td>
+                    <td>2</td>
+                    <td>{{ kanat_genisligi|add:-30|mul:2 }}</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div id="menu2" {% if not print %}class="tab-pane fade"{% endif %}>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h3>Kanat İmalatı</h3>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">DIKME</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/dikme.png' %}">
-                        <p>{{ is_emri.pass_height }} mm (2 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">ALT ETEK</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/alt_etek.png' %}">
-                        <p>{{ kanat_genisligi|add:-48 }} mm (2 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">UST ETEK</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/ust_etek.png' %}">
-                        <p>{{ kanat_genisligi|add:-48 }} mm (2 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KENET</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/kenet.png' %}">
-                        <p>{{ is_emri.pass_height }} mm (2 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">YARIM KENET</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/yarim_kenet.png' %}">
-                        <p>{{ is_emri.pass_width|add:10 }} mm (2 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">TEK CAM CITASI</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/tek_cam_citasi.png' %}">
-                        <p>Yatay: {{ kanat_genisligi|add:-54 }} mm (2 adet) </p>
-                        <p>Dikey: {{ is_emri.pass_height|add:-140 }} mm (2 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">ŞASE</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/sase.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">PLASTIK FIRÇA ADAPTORÜ</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/plastik_firca_adaptoru.png' %}">
-                        <p>{{ kanat_genisligi|add:-30 }} (1 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KLAVUZ</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/klavuz.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">ASKI LAMASI</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/aski_yamasi.png' %}">
-                        <p>2 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">ALIN FITILI</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/alin_fitili.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">CAM FITILI DIŞ</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/cam_fitili_dis.png' %}">
-                        <p>En: {{ kanat_genisligi|add:-64 }} (2 Adet)</p>
-                        <p>Boy: {{ ork_order.pass_height|add:-115 }} (2 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">CAM FITILI İÇ</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/cam_fitili_ic.png' %}">
-                        <p>En: {{ kanat_genisligi|add:-64 }} (2 Adet)</p>
-                        <p>Boy: {{ ork_order.pass_height|add:-115 }} (2 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">KIL FITIL</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/kil_fitili.png' %}">
-                        <p>{{ is_emri.pass_height }} (1 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">FIRCA</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/firca.png' %}">
-                        <p>{{ kanat_genisligi|add:-30 }} (1 Adet)</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">SABİT KANAT ŞASE BAĞLANTI</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/sabit_kanat_sase_baglanti.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12  mechanizm-parts">
-                        <p style="color: red; font-weight: bold">ISI CAM CITASI</p>
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/isi_cam_citasi.png' %}">
-                        <p>1 Adet</p>
-                    </div>
-                </div>
-            </div>
+        <hr>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Tipi</th>
+                    <th>En</th>
+                    <th>Boy</th>
+                    <th>Adet</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>HAREKETLİ CAM ÖLÇÜSÜ</td>
+                    <td>{{ kanat_genisligi|add:-64 }}</td>
+                    <td>{{ is_emri.gecis_yuksekligi|add:-120 }}</td>
+                    <td>2</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div id="menu3" {% if not print %}class="tab-pane fade"{% endif %}>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h3>Kanat İmalatı 2</h3>
-                    </div>
-                    <div class="col-md-12 text-on-image">
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/goruntu1.png' %}" alt="">
-                        <div class="text" style="bottom: 16%; left: 42%">Kanat Genişliği = {{ kanat_genisligi }}</div>
-                    </div>
-                    <div class="col-md-4 text-on-image">
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/goruntu2.png' %}" alt="">
-                        <div class="text" style="top: 40%; left: -8%; transform: rotate(-90deg)">Kanat Yüksekliği = {{ is_emri.pass_height }}</div>
-                    </div>
-                    <div class="col-md-8 text-on-image">
-                        <img src="{% static 'img/sld/th_standart_kanat_imalati/goruntu3.png' %}" alt="">
-                        <div class="text" style="top: 35%; right: 11%; transform: rotate(90deg)">Dikme Yüksekliği = {{ is_emri.pass_height }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        <hr>
 {% endwith %}

@@ -10,4 +10,4 @@ def gecis_genisligi_hesaplama(toplam_genislik):
 
 @register.filter  # kanat genisligi --> (gecis_genisligi + 84) / 2
 def kanat_genisligi_hesaplama(toplam_genislik):
-    return round((gecis_genisligi_hesaplama(toplam_genislik) + 84) / 2)
+    return round((gecis_genisligi_hesaplama(toplam_genislik) + 168) / 6)
