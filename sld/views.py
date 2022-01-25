@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.views import login_required
 from django.contrib.messages import success, error
-from .models import SldModel
+from django.shortcuts import render, get_object_or_404, redirect
+
 from .forms import SldForm
+from .models import SldModel
 
 
 @login_required
@@ -21,13 +22,13 @@ def isemri_olustur(request):
             instance.user = request.user
             instance.save()
             success(request, f'{instance.crm} başarıyla oluşturuldu.')
-            return redirect('sld:isEmri_listele')
+            return redirect('sld:listele')
         else:
             error(request, 'Lütfen formu eksiksiz doldurduğunuza emin olun!')
     elif request.method == 'GET':
         form = SldForm()
-        context = {'form': form}
-        return render(request, 'sld/isEmri_olustur.html', context)
+
+    return render(request, 'sld/isEmri_olustur.html', {'form': form})
 
 
 @login_required

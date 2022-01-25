@@ -3,285 +3,64 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+
+
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/sld/form.css' %}">
 {% endblock %}
+
 {% block body %}
+
     <div class="container">
-        <div>
-            <h2>SLD Kayar Kapi - İŞ EMRİ OLUSTUR</h2>
+        <div class="row">
+            <div class="col-md-5"><h4>İŞ EMRİ</h4></div>
+            <div class="col-md-7" style="text-align: right;"><h4>SLD KAYAR KAPI</h4></div>
         </div>
         <hr>
-        <div>
-            {% if form.errors %}
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <div class="alert alert-danger">
-                            <strong>{{ field.label }} | {{ error|escape }}</strong>
+        <div class="card">
+            <div class="card-body">
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ field.label }} | {{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>{{ error|escape }}</strong>
                         </div>
                     {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <div class="alert alert-danger" role="alert">
-                        <strong>{{ error|escape }}</strong>
+                {% endif %}
+
+                <form method="POST"  action="{% url 'sld:olustur' %}">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    {% load bootstrap4 %}
+                    {% bootstrap_css %}
+                    {% bootstrap_javascript jquery='full' %}
+                    {{ form.media }}
+
+                    <br>
+                    <div style="text-align: center;">
+                        <input type="submit" value="olustur" class="btn btn-primary btn-sm"/>
                     </div>
-                {% endfor %}
-            {% endif %}
-            <form method="POST" action="{% url 'sld:isEmri_olustur' %}">
-                {% csrf_token %}
-                {{ form | crispy }}
-                {% load bootstrap4 %}
-                {% bootstrap_css %}
-                {% bootstrap_javascript jquery='full' %}
-                {{ form.media }}
-                <br>
-                <div style="text-align: center;">
-                    <input type="submit" value="Olustur" class="btn btn-primary btn-sm"/>
-                </div>
-            </form>
+                </form>
+
+            </div>
+            <br>
+            {% include 'footer.html' %}
         </div>
+
     </div>
+
 {% endblock body %}
 
 {% block extra_script %}
     <script src="{% static 'js/sld/form.js' %}"></script>
 {% endblock %}
 
-
-{##}
-{#{% extends 'base.html' %}#}
-{#{% load static %}#}
-{#{% load crispy_forms_tags %}#}
-{#{% load crispy_forms_filters %}#}
-{##}
-{##}
-{##}
-{#{% block extra_css %}#}
-{#    <link rel="stylesheet" href="{% static 'css/sld/form.css' %}">#}
-{#{% endblock %}#}
-{##}
-{#{% block body %}#}
-{##}
-{#    {% include 'navbar.html' %}#}
-{#    <br>#}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <div class="col-md-5"><h4>İŞ EMRİ</h4></div>#}
-{#            <div class="col-md-7" style="text-align: right;"><h4>SLD KAYAR KAPI</h4></div>#}
-{#        </div>#}
-{#        <hr>#}
-{#        <div class="card">#}
-{#            <div class="card-body">#}
-{#                                {% if form.errors %}#}
-{#                                    {% for field in form %}#}
-{#                                        {% for error in field.errors %}#}
-{#                                            <div class="alert alert-danger">#}
-{#                                                <strong>{{ field.label }} | {{ error|escape }}</strong>#}
-{#                                            </div>#}
-{#                                        {% endfor %}#}
-{#                                    {% endfor %}#}
-{#                                    {% for error in form.non_field_errors %}#}
-{#                                        <div class="alert alert-danger" role="alert">#}
-{#                                            <strong>{{ error|escape }}</strong>#}
-{#                                        </div>#}
-{#                                    {% endfor %}#}
-{#                                {% endif %}#}
-{#                <div class="container">#}
-{#                    <form method="POST" action="{% url 'sld:create' %}">#}
-{#                        {% csrf_token %}#}
-{##}
-{#                        {% load bootstrap4 %}#}
-{#                        {% bootstrap_css %}#}
-{#                        {% bootstrap_javascript jquery='full' %}#}
-{#                        {{ form.media }}#}
-{##}
-{#                        <div class="accordion col-12" id="accordionPanelsStayOpenExample">#}
-{#                            <div class="accordion-item ">#}
-{#                                <h4 class="accordion-header" id="panelsStayOpen-headingOne">#}
-{#                                    <button class="accordion-button col-12" type="button"#}
-{#                                            data-bs-toggle="collapse"#}
-{#                                            data-bs-target="#panelsStayOpen-collapseOne"#}
-{#                                            aria-expanded="true"#}
-{#                                            aria-controls="panelsStayOpen-collapseOne">#}
-{#                                        GENEL BILGILER#}
-{#                                    </button>#}
-{#                                </h4>#}
-{#                                <div id="panelsStayOpen-collapseOne"#}
-{#                                     class="accordion-collapse collapse show"#}
-{#                                     aria-labelledby="panelsStayOpen-headingOne">#}
-{#                                    <div class="accordion-body">#}
-{##}
-{#                                        <div class="row">#}
-{#                                            <div class="col-4">#}
-{#                                                {{ form.user|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                            <div class="col-4">#}
-{#                                                {{ form.crm|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                            <div class="col-4">#}
-{#                                                {{ form.company_name|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-4">#}
-{#                                                {{ form.billing_address|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                            <div class="col-4">#}
-{#                                                {{ form.delivery_address|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                            <div class="col-4">#}
-{#                                                {{ form.delivery_date|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-9">#}
-{#                                                {{ form.delivery_type|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                            <div class="col-3">#}
-{#                                                {{ form.has_chest|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="row">#}
-{#                                            <div class="col">#}
-{#                                                {{ form.glass|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="row">#}
-{#                                            <div class="col">#}
-{#                                                {{ form.color|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="row">#}
-{#                                            <div class="col">#}
-{#                                                {{ form.notes|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-4">#}
-{#                                                {{ form.drawing|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                            <div class="col-4">#}
-{#                                                {{ form.control|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                            <div class="col-4">#}
-{#                                                {{ form.manufacturing_chief|as_crispy_field }}#}
-{#                                            </div>#}
-{#                                        </div>#}
-{##}
-{##}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <div class="accordion-item">#}
-{#                                    <h4 class="accordion-header" id="panelsStayOpen-headingTwo">#}
-{#                                        <button class="accordion-button collapsed col-12" type="button"#}
-{#                                                data-bs-toggle="collapse"#}
-{#                                                data-bs-target="#panelsStayOpen-collapseTwo"#}
-{#                                                aria-expanded="false"#}
-{#                                                aria-controls="panelsStayOpen-collapseTwo">#}
-{#                                            KAPI SECIMI#}
-{#                                        </button>#}
-{#                                    </h4>#}
-{#                                    <div id="panelsStayOpen-collapseTwo"#}
-{#                                         class="accordion-collapse collapse"#}
-{#                                         aria-labelledby="panelsStayOpen-headingTwo">#}
-{#                                        <div class="accordion-body">#}
-{#                                            <div class="row">#}
-{#                                                <div class="col-12">#}
-{#                                                    {{ form.door_type| crispy }}#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <br><br>#}
-{#                                            <div class="row">#}
-{#                                                <div class="col">#}
-{#                                                    {{ form.pass_width|crispy }}#}
-{#                                                </div>#}
-{#                                                <div class="col">#}
-{#                                                    {{ form.pass_height|crispy }}#}
-{#                                                </div>#}
-{#                                                <div class="col">#}
-{#                                                    {{ form.opening_direction|crispy }}#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="row">#}
-{#                                                <div class="col">#}
-{#                                                    {{ form.ustluk|crispy }}#}
-{#                                                </div>#}
-{#                                                <div class="col">#}
-{#                                                    {{ form.total_width|crispy }}#}
-{#                                                </div>#}
-{#                                                <div class="col">#}
-{#                                                    {{ form.total_height|crispy }}#}
-{#                                                </div>#}
-{#                                                <div class="col">#}
-{#                                                    {{ form.mechanism_width|crispy }}#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <div class="accordion-item">#}
-{#                                    <h4 class="accordion-header" id="panelsStayOpen-headingThree">#}
-{#                                        <button class="accordion-button collapsed col-12" type="button"#}
-{#                                                data-bs-toggle="collapse"#}
-{#                                                data-bs-target="#panelsStayOpen-collapseThree"#}
-{#                                                aria-expanded="false"#}
-{#                                                aria-controls="panelsStayOpen-collapseThree">#}
-{#                                            KAPI ICIN OPSIYON SECIMI#}
-{#                                        </button>#}
-{#                                    </h4>#}
-{#                                    <div id="panelsStayOpen-collapseThree"#}
-{#                                         class="accordion-collapse collapse"#}
-{#                                         aria-labelledby="panelsStayOpen-headingThree">#}
-{#                                        <div class="accordion-body">#}
-{#                                            <div class="row">#}
-{#                                                <div class="col-12">#}
-{#                                                    {{ form.options|as_crispy_field }}#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <div class="accordion-item">#}
-{#                                    <h4 class="accordion-header" id="panelsStayOpen-headingFour">#}
-{#                                        <button class="accordion-button collapsed col-12" type="button"#}
-{#                                                data-bs-toggle="collapse"#}
-{#                                                data-bs-target="#panelsStayOpen-collapseFour"#}
-{#                                                aria-expanded="false"#}
-{#                                                aria-controls="panelsStayOpen-collapseThree">#}
-{#                                            RADAR ve AKTIVASYON SECIMI#}
-{#                                        </button>#}
-{#                                    </h4>#}
-{#                                    <div id="panelsStayOpen-collapseFour"#}
-{#                                         class="accordion-collapse collapse"#}
-{#                                         aria-labelledby="panelsStayOpen-headingFour">#}
-{#                                        <div class="accordion-body">#}
-{#                                            <div class="row">#}
-{#                                                <div class="col-12">#}
-{#                                                    {{ form.radar_activations|as_crispy_field }}#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <br>#}
-{#                        <div style="text-align: center;">#}
-{#                            <input type="submit" value="Oluştur" class="btn btn-primary btn-sm"/>#}
-{#                        </div>#}
-{#                    </form>#}
-{#                </div>#}
-{#            </div>#}
-{#            <br>#}
-{#            {% include 'footer.html' %}#}
-{#        </div>#}
-{##}
-{#    </div>#}
-{#{% endblock body %}#}
-{##}
-{#{% block extra_script %}#}
-{#    <script src="{% static 'js/doors/sld/form.js' %}"></script>#}
-{#{% endblock %}#}
-{##}
 
 

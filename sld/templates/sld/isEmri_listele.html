@@ -8,7 +8,7 @@
 <body>
 <div>
     <a href="{% url 'home:sld_kapilar' %}"><strong>SLD ISLEM TURLERI</strong></a>. | .
-    <a href="{% url 'sld:isEmri_olustur' %}"><strong>SLD YENI OLUSTUR</strong></a><hr>
+    <a href="{% url 'sld:olustur' %}"><strong>SLD YENI OLUSTUR</strong></a><hr>
     <div><h4>SLD Uretim is Emirleri</h4></div><br>
     <div>
         <table>
@@ -30,7 +30,7 @@
                     <td>{{ is_emri.olusturma_tarihi|timesince }} önce</td>
                     <td>{{ is_emri.kapi_tipi|title }}</td>
                     <td>
-                        <a href="{% url 'sld:isEmri_goruntule' id=is_emri.id %}">
+                        <a href="{% url 'sld:goruntule' id=is_emri.id %}">
                             <div>Görüntüle</div>
                         </a>
                     </td>

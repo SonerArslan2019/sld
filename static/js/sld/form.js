@@ -579,17 +579,18 @@ $(document).ready(function () {
 
     $('form').submit(function (e) {
         let submit_status = true;
-        if (cam_div.find('input').val() === '') {
+        if(cam_div.find('input').val() === ''){
             alert('Cam tipi boş bırakılamaz.');
-            submit_status = false;
+            submit_status=false;
         }
 
-        if (bitis_div.find('input').val() === '') {
+        if(bitis_div.find('input').val() === '') {
             alert('Renk boş bırakılamaz.');
             submit_status = false;
         }
-        if (!submit_status)
+        if(!submit_status)
             e.preventDefault();
 
     });
+
 });

@@ -1,5 +1,5 @@
+from bootstrap_datepicker_plus.widgets import DatePickerInput
 from django import forms
-from django.forms import widgets
 
 from .models import SldModel
 
@@ -8,21 +8,26 @@ class SldForm(forms.ModelForm):
     class Meta:
         model = SldModel
         fields = [
-            'user',
             'crm',
             'firma_bilgileri',
+            'sevk_adresi',
             'teslim_tarihi',
+            'teslim_sekli',
+            'paketleme_sekli',
             'cam',
             'bitis',
+            'notlar',
             'kapi_tipi',
-            'acilis_yonu',
             'gecis_genisligi',
             'gecis_yuksekligi',
-            'toplam_genislik',
             'ustluk',
+            'toplam_genislik',
             'toplam_yukseklik',
             'mekanizma_genisligi',
+            'acilis_yonu',
             'opsiyonlar',
             'radar_aktivasyonlar',
         ]
-
+        widgets = {
+            'teslim_tarihi': DatePickerInput(format='%d/%m/%Y'),
+        }
